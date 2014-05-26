@@ -1,5 +1,23 @@
 == Wallmart Logistics
 
+=== My solution and info's
+
+I've solved the problem using a graph database called neo4j and a basic rails setup.
+
+I`ve had a bunch of issues to get neo4j working correctly in jruby and use it's djikstra implementation. But it seems to work smoothly now.
+
+Also, there's no "standard" config for using and testing neo4j apps. (neo4j in ruby looks like a hack)
+
+The solution I used to clean the database was to rm -rf it's files. There are probably many better ways to do it, but that's the solution after some googling I've found to be reliable. If I had more time to work on it, I would probably have come with a better solution.
+
+=== Instalation
+
+- Install neo4j(brew install neo4j if you are in a mac)
+- Use jruby 1.7.11
+- Run bundle install inside this directory
+
+And then... rails s
+
 === Routes
 
 POST '/maps'

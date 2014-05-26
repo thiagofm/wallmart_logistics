@@ -3,6 +3,7 @@ class Map < Neo4j::Rails::Model
 
   has_n(:points)
 
+  # Adds points to the map
   def add_points(points)
     points.each do |point|
       self.points << point
