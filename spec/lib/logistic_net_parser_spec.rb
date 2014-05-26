@@ -14,7 +14,7 @@ describe LogisticNetParser do
     ]}
 
     it "parses correctly" do
-      expect(LogisticNetParser.parse(logistic_net)).to be(true)
+      expect(LogisticNetParser.parse(logistic_net)).to eq([{:from=>"A", :to=>"B", :distance=>"10"}, {:from=>"B", :to=>"D", :distance=>"1"}, {:from=>"A", :to=>"C", :distance=>"20"}, {:from=>"C", :to=>"D", :distance=>"30"}, {:from=>"B", :to=>"E", :distance=>"50"}, {:from=>"D", :to=>"E", :distance=>"3"}])
     end
   end
 end
