@@ -16,6 +16,7 @@ class Point < Neo4j::Rails::Model
     Neo4j::Algo.dijkstra_path(point_1, point_2)
                .outgoing(:route)
                .cost_evaluator{|rel, a, b| rel.props["distance"] }
+               .map {|item| item.props }
   end
 
   def self.create_points(logistic_net)
@@ -24,5 +25,16 @@ class Point < Neo4j::Rails::Model
       to = Point.find_or_create_by(name: item[:to])
       from.add_route(to, item[:distance])
     end
+  end
+
+  def self.discover_cost(route)
+    route.select {|route| route['distance'].present? }
+         .map    {|route| route['distance'] }
+         .reduce(:+)
+  end
+
+  def self.discover_route(route)
+    route.select {|route| route['name'].present? }
+         .map    {|route| route['name'] }
   end
 end
