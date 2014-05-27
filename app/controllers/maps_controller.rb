@@ -22,7 +22,12 @@ class MapsController < ApplicationController
     path = Point.compute_path(route)
 
     render status: 200, json: {
-      price: distance*(gas_price.to_f/fuel_consumption.to_f),
+      price:
+        CostCalculator.calculate(
+          gas_price: gas_price,
+          fuel_consumption: fuel_consumption,
+          distance: distance
+        ),
       path: path,
     }
   end
