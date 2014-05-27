@@ -1,5 +1,7 @@
 WallmartLogistics::Application.routes.draw do
-  resources :maps, only: [:create]
+  resources :maps, only: [:create] do
+    get 'path'
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

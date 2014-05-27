@@ -18,6 +18,10 @@ The solution I used to clean the database was to rm -rf it's files. There are pr
 
 And then... rails s
 
+=== Docs/Tests
+
+There is documentation for the models and the controller test covers the example from the exercise.
+
 === Routes
 
 POST '/maps'
@@ -31,10 +35,18 @@ Response: 200
 
 -----------
 
-GET '/path'
+GET '/map/:map_name/path'
 
-params: beginning, destination, fuel_comsumption, gas_price
+params: map_name, from, to, fuel_consumption, gas_price
 
 Example:
+After the example of POST '/maps' run:
+get :path, map_id: "Hello", from: "A", to: "D", fuel_consumption: "10", gas_price: "2.50", format: :json
 
-Output:
+Response: 200
+Body:
+{
+  distance: 6.25,
+  path: ['A', 'B', 'D']
+}
+

@@ -62,12 +62,11 @@ describe Point do
 
     it 'calculates a route between point a & b' do
       route = Point.route_between(@point_a, @point_b)
-      expect(route).to eq(
-        [{"_neo_id"=>1, "name"=>"A", "_classname"=>"Point"},
-         {"_neo_id"=>0, "distance"=>10.0},
-         {"_neo_id"=>2, "name"=>"B", "_classname"=>"Point"},
-         {"_neo_id"=>1, "distance"=>15.0},
-         {"_neo_id"=>3, "name"=>"D", "_classname"=>"Point"}])
+      expect(route[0]['name']).to eq('A')
+      expect(route[1]['distance']).to eq(10.0)
+      expect(route[2]['name']).to eq('B')
+      expect(route[3]['distance']).to eq(15.0)
+      expect(route[4]['name']).to eq('D')
     end
   end
 
