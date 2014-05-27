@@ -46,7 +46,7 @@ get :path, map_id: "Hello", from: "A", to: "D", fuel_consumption: "10", gas_pric
 Response: 200
 Body:
 {
-  distance: 6.25,
+  cost: 6.25,
   path: ['A', 'B', 'D']
 }
 
