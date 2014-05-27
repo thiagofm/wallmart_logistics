@@ -14,7 +14,7 @@ I didn't cover corner cases like when the map name is missing or something. It's
 
 -----------
 
-=== Instalation
+=== Installation instructions
 
 - Install neo4j(brew install neo4j if you are in a mac)
 - Install/use jruby 1.7.11
