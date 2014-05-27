@@ -4,11 +4,11 @@
 
 I've solved the problem using a graph database called neo4j and a basic rails setup.
 
-I`ve had a bunch of issues to get neo4j working correctly in jruby and use it's djikstra implementation. But it seems to work smoothly now.
+I`ve had a bunch of issues to get neo4j working properly in jruby and use it's djikstra implementation. But it seems to work smoothly now.
 
 Also, there's no "standard" config for using and testing neo4j apps. (neo4j in ruby looks like a hack)
 
-The solution I used to clean the database was to rm -rf it's files. There are probably many better ways to do it, but that's the solution after some googling I've found to be reliable. If I had more time to work on it, I would probably have come with a better solution.
+The solution I've used to clean the database was to rm -rf it's files. There is probably a better way to do it, but that's the solution after some googling I've found to be reliable. If I had more time to work on it, I would probably have come with a better solution.
 
 I didn't cover corner cases like when name is missing or something. It's very straightforward and basic(and time consuming) to add validations like this to this test.
 
@@ -30,7 +30,7 @@ There is documentation for the models and the controller test covers the example
 
 === Routes
 
-POST '/maps'
+==== POST '/maps'
 
 params: name, logistic_net
 
@@ -44,7 +44,7 @@ Body: empty
 
 -----------
 
-GET '/map/:map_name/path'
+==== GET '/map/:map_name/path'
 
 params: map_id(in url), from, to, fuel_consumption, gas_price
 
