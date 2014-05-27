@@ -11,24 +11,19 @@ class MapsController < ApplicationController
 
   def path
     map = Map.find(name: params[:map_id])
-    fuel_consumption = params[:fuel_consumption]
-    gas_price = params[:gas_price]
 
     point_a = map.points.find{|point| point.name == params[:from]}
     point_b = map.points.find{|point| point.name == params[:to]}
 
     route = Point.route_between(point_a, point_b)
-    distance = Point.compute_distance(route)
-    path = Point.compute_path(route)
 
     render status: 200, json: {
-      price:
-        CostCalculator.calculate(
-          gas_price: gas_price,
-          fuel_consumption: fuel_consumption,
-          distance: distance
-        ),
-      path: path,
+      price: CostCalculator.calculate(
+        gas_price: params[:gas_price],
+        fuel_consumption: params[:fuel_consumption],
+        distance: Point.compute_distance(route)
+      ),
+      path: Point.compute_path(route),
     }
   end
 end
