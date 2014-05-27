@@ -10,14 +10,14 @@ Also, there's no "standard" config for using and testing neo4j apps. (neo4j in r
 
 The solution I've used to clean the database was to rm -rf it's files. There is probably a better way to do it, but that's the solution after some googling I've found to be reliable. If I had more time to work on it, I would probably have come with a better solution.
 
-I didn't cover corner cases like when name is missing or something. It's very straightforward and basic(and time consuming) to add validations like this to this test.
+I didn't cover corner cases like when the map name is missing or something. It's very straightforward and basic(and time consuming) to add validations like this to this test.
 
 -----------
 
 === Instalation
 
 - Install neo4j(brew install neo4j if you are in a mac)
-- Use jruby 1.7.11
+- Install/use jruby 1.7.11
 - Run bundle install inside this directory
 
 And then... rails s
@@ -26,7 +26,7 @@ And then... rails s
 
 === Docs/Tests
 
-There is documentation for the models and the controller test covers the example from the exercise.
+There is documentation in the project for the models and the controller test covers the example from the exercise.
 
 === Routes
 
