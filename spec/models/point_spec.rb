@@ -62,7 +62,41 @@ describe Point do
 
     it 'calculates a route between point a & b' do
       route = Point.route_between(@point_a, @point_b)
+      expect(route).to eq(
+        [{"_neo_id"=>1, "name"=>"A", "_classname"=>"Point"},
+         {"_neo_id"=>0, "distance"=>10.0},
+         {"_neo_id"=>2, "name"=>"B", "_classname"=>"Point"},
+         {"_neo_id"=>1, "distance"=>15.0},
+         {"_neo_id"=>3, "name"=>"D", "_classname"=>"Point"}])
+    end
+  end
+
+  context '.compute_distance' do
+    let!(:route) {
+      [
+        {"_neo_id"=>1, "name"=>"A", "_classname"=>"Point"},
+        {"_neo_id"=>0, "distance"=>10.0},
+        {"_neo_id"=>2, "name"=>"B", "_classname"=>"Point"},
+        {"_neo_id"=>1, "distance"=>15.0},
+        { "_neo_id"=>3, "name"=>"D", "_classname"=>"Point"}
+      ]}
+
+    it 'computes the distance of the route' do
       expect(Point.compute_distance(route)).to eq(25.0)
+    end
+  end
+
+  context '.compute_path' do
+    let!(:route) {
+      [
+        {"_neo_id"=>1, "name"=>"A", "_classname"=>"Point"},
+        {"_neo_id"=>0, "distance"=>10.0},
+        {"_neo_id"=>2, "name"=>"B", "_classname"=>"Point"},
+        {"_neo_id"=>1, "distance"=>15.0},
+        { "_neo_id"=>3, "name"=>"D", "_classname"=>"Point"}
+      ]}
+
+    it 'computes the distance of the route' do
       expect(Point.compute_path(route)).to eq(["A", "B", "D"])
     end
   end

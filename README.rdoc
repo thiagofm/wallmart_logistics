@@ -25,8 +25,9 @@ POST '/maps'
 params: name, logistic_networks
 
 Example:
+post :create, name: "Hello", logistic_net: [ "A B 10", "B D 15", "A C 20", "C D 30", "B E 50", "D E 30"], format: :json
 
-Output:
+Response: 200
 
 -----------
 

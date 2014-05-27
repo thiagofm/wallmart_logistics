@@ -1,6 +1,15 @@
 class Point < Neo4j::Rails::Model
   property :name, :type => String, index: :exact
 
+  # Creates points for a logistics network
+  def self.create_points(logistic_net)
+    LogisticNetParser.parse(logistic_net).map do |item|
+      from = Point.find_or_create_by(name: item[:from])
+      to = Point.find_or_create_by(name: item[:to])
+      from.add_route(to, item[:distance])
+    end
+  end
+
   # Adds a route between two points with a defined distance
   def add_route(point, distance)
     Neo4j::Transaction.run do
@@ -9,15 +18,6 @@ class Point < Neo4j::Rails::Model
     end
 
     self
-  end
-
-  # Creates points for a logistics network
-  def self.create_points(logistic_net)
-    LogisticNetParser.parse(logistic_net).map do |item|
-      from = Point.find_or_create_by(name: item[:from])
-      to = Point.find_or_create_by(name: item[:to])
-      from.add_route(to, item[:distance])
-    end
   end
 
   # Calculates a route between point_1 and point_2 with the dijkstra algorithm
