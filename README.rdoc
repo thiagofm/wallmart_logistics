@@ -10,6 +10,10 @@ Also, there's no "standard" config for using and testing neo4j apps. (neo4j in r
 
 The solution I used to clean the database was to rm -rf it's files. There are probably many better ways to do it, but that's the solution after some googling I've found to be reliable. If I had more time to work on it, I would probably have come with a better solution.
 
+I didn't cover corner cases like when name is missing or something. It's very straightforward and basic(and time consuming) to add validations like this to this test.
+
+-----------
+
 === Instalation
 
 - Install neo4j(brew install neo4j if you are in a mac)
@@ -17,6 +21,8 @@ The solution I used to clean the database was to rm -rf it's files. There are pr
 - Run bundle install inside this directory
 
 And then... rails s
+
+-----------
 
 === Docs/Tests
 
@@ -26,22 +32,26 @@ There is documentation for the models and the controller test covers the example
 
 POST '/maps'
 
-params: name, logistic_networks
+params: name, logistic_net
 
-Example:
-post :create, name: "Hello", logistic_net: [ "A B 10", "B D 15", "A C 20", "C D 30", "B E 50", "D E 30"], format: :json
+==== Example:
+
+curl -o -X "POST" -d "name=Hello&logistic_net[]=A B 10&logistic_net[]=B D 15&logistic_net[]=A C 20&logistic_net[]=C D 30&logistic_net[]=B E 50&logistic_net[]=D E 30" http://localhost:3000/maps
 
 Response: 200
+Body: empty
 
 -----------
 
 GET '/map/:map_name/path'
 
-params: map_name, from, to, fuel_consumption, gas_price
+params: map_id(in url), from, to, fuel_consumption, gas_price
 
-Example:
+==== Example:
+
 After the example of POST '/maps' run:
-get :path, map_id: "Hello", from: "A", to: "D", fuel_consumption: "10", gas_price: "2.50", format: :json
+
+curl -X GET -d "from=A&to=D&fuel_consumption=10&gas_price=2.50" http://localhost:3000/maps/Hello/path.json
 
 Response: 200
 Body:

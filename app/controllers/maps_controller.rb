@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class MapsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
   def create
     map = Map.new(name: params[:name])
     map.add_points(Point.create_points(params[:logistic_net]))
