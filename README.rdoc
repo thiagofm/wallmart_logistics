@@ -39,6 +39,7 @@ params: name, logistic_net
 curl -o -X "POST" -d "name=Hello&logistic_net[]=A B 10&logistic_net[]=B D 15&logistic_net[]=A C 20&logistic_net[]=C D 30&logistic_net[]=B E 50&logistic_net[]=D E 30" http://localhost:3000/maps
 
 Response: 200
+
 Body: empty
 
 -----------
@@ -54,6 +55,7 @@ After the example of POST '/maps' run:
 curl -X GET -d "from=A&to=D&fuel_consumption=10&gas_price=2.50" http://localhost:3000/maps/Hello/path.json
 
 Response: 200
+
 Body:
 {
   cost: 6.25,
